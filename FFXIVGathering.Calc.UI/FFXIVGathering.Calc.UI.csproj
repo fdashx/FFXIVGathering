@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Platforms>x64</Platforms>
+    <ApplicationIcon>FFXIVGathering.ico</ApplicationIcon>
+    <AssemblyName>FFXIVGatheringCalc</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="FFXIVGathering.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Config.Net" Version="5.1.3" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.4.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FFXIVGathering.Calc.Core\FFXIVGathering.Calc.Core.csproj" />
+  </ItemGroup>
+
+</Project>
