@@ -86,7 +86,7 @@
                 <xcd:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Chance}" Style="{StaticResource PercInput}"/>
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Boon Chance" Style="{StaticResource Label}"/>
                 <xcd:DoubleUpDown Grid.Row="4" Grid.Column="1" Value="{Binding BoonChance}" Style="{StaticResource PercInput}"/>
-                <TextBlock Grid.Row="5" Grid.Column="0" Text="Bountiful Bonus Yield" Style="{StaticResource Label}"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Bountiful Bonus Yield" Style="{StaticResource Label}" ToolTip="Before lv68 this will always be 1. After Bountiful Yield/Harvest II upgrade this will be 1-3 depending on the level of the node and perception stat."/>
                 <xcd:IntegerUpDown Grid.Row="5" Grid.Column="1" Value="{Binding BountifulBonus}" Minimum="1" DefaultValue="1" Style="{StaticResource IntInput}"/>
             </Grid>
             <Button Grid.Row="2" Content="Calculate" Command="{Binding CalculateCmd}" Margin="2" Background="AliceBlue"/>
