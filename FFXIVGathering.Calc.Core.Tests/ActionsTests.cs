@@ -100,5 +100,18 @@ namespace FFXIVGathering.Calc.Core.Tests
         {
             TestBoon(new Gift2());
         }
+
+        [TestCase(85, 4, 79, true)]
+        [TestCase(84, 4, 79, false)]
+        [TestCase(84, 4, 80, true)]
+        public void RepeatableActionCanExecuteAfterGPRegenTest(int gp, int attempts, int level, bool canExecute)
+        {
+            var actionMock = new Mock<BaseAction>() { CallBase = true };
+            actionMock.Setup(a => a.GP).Returns(100);
+            actionMock.Setup(a => a.IsRepeatable).Returns(true);
+            var context = new GatheringContext() { AvailableGP = gp, Attempts = attempts, CharacterLevel = level };
+
+            Assert.That(actionMock.Object.CanExecute(context), Is.EqualTo(canExecute));
+        }
     }
 }

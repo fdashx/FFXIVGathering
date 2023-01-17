@@ -9,6 +9,16 @@ namespace FFXIVGathering.Calc.UI.ViewModels
 {
     public interface IMainSettings
     {
+        [DefaultValue(double.NaN)]
+        double WindowTop { get; set; }
+        [DefaultValue(double.NaN)]
+        double WindowLeft { get; set; }
+        [DefaultValue(double.NaN)]
+        double WindowWidth { get; set; }
+        [DefaultValue(double.NaN)]
+        double WindowHeight { get; set; }
+        [DefaultValue(false)]
+        bool IsWindowMaximised { get; set; }
         [DefaultValue(90)]
         int CharacterLevel { get; set; }
         [DefaultValue(900)]

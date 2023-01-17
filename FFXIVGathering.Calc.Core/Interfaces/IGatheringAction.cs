@@ -9,6 +9,7 @@ namespace FFXIVGathering.Calc.Core.Interfaces
         string NameMiner { get; }
         bool IsRepeatable { get; }
         int GP { get; }
+        int ExecutionOrder { get; }
         bool CanExecute(GatheringContext context);
         void Execute(GatheringContext context);
     }

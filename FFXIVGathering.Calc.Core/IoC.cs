@@ -31,7 +31,7 @@ namespace FFXIVGathering.Calc.Core
                 new Bountiful2(),
                 new Tidings(),
                 new AttemptEnhanced()
-            }).As<IList<IGatheringAction>>();
+            }).As<IEnumerable<IGatheringAction>>();
         }
     }
 }

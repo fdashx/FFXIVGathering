@@ -20,6 +20,8 @@ namespace FFXIVGathering.Calc.Core.Actions
 
         public override int GP => 300;
 
+        public override int ExecutionOrder => 2;
+
         public override bool CanExecute(GatheringContext context)
         {
             return base.CanExecute(context) && context.CharacterLevel < 90;

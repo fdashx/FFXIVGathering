@@ -15,6 +15,8 @@ namespace FFXIVGathering.Calc.Core.Actions
 
         public override int GP => 300;
 
+        public override int ExecutionOrder => 2;
+
         public override void Execute(GatheringContext context)
         {
             context.Attempts++;

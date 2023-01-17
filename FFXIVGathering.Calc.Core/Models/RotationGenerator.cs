@@ -12,13 +12,13 @@ namespace FFXIVGathering.Calc.Core.Models
     public class RotationGenerator : IRotationGenerator
     {
         private readonly IRotationFactory _rotationFactory;
-        private readonly IList<IGatheringAction> _availableActions;
+        private readonly List<IGatheringAction> _availableActions;
         private readonly List<IRotation> _rotations;
 
-        public RotationGenerator(IRotationFactory roationFactory, IList<IGatheringAction> availableActions)
+        public RotationGenerator(IRotationFactory roationFactory, IEnumerable<IGatheringAction> availableActions)
         {
             _rotationFactory = roationFactory;
-            _availableActions = availableActions;
+            _availableActions = availableActions.OrderBy(a => a.ExecutionOrder).ToList();
             _rotations = new List<IRotation>();
         }
 

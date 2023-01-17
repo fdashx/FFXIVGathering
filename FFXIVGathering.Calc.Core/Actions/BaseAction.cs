@@ -15,10 +15,27 @@ namespace FFXIVGathering.Calc.Core.Actions
         public abstract string NameMiner { get; }
         public abstract bool IsRepeatable { get; }
         public abstract int GP { get; }
+        public abstract int ExecutionOrder { get; }
 
         public virtual bool CanExecute(GatheringContext context)
         {
-            return context.CharacterLevel >= Level && context.AvailableGP >= GP;
+            if (context.CharacterLevel < Level) 
+            {
+                return false;
+            }
+
+            if (context.AvailableGP >= GP)
+            {
+                return true;
+            }
+            else if (IsRepeatable)
+            {
+                return (context.Attempts - 1) * context.GPRegenPerAttempt + context.AvailableGP >= GP;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public virtual void Execute(GatheringContext context)

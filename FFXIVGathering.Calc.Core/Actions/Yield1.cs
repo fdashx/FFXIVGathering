@@ -20,6 +20,8 @@ namespace FFXIVGathering.Calc.Core.Actions
 
         public override int GP => 400;
 
+        public override int ExecutionOrder => 1;
+
         public override void Execute(GatheringContext context)
         {
             context.BaseAmount++;

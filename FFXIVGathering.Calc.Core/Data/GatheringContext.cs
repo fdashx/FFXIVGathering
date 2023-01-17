@@ -17,5 +17,7 @@ namespace FFXIVGathering.Calc.Core.Data
         public int CharacterLevel { get; set; }
 
         public int WiseAttempts { get; set; }
+
+        public int GPRegenPerAttempt => CharacterLevel < 80 ? 5 : 6;
     }
 }

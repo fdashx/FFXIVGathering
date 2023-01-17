@@ -15,6 +15,8 @@ namespace FFXIVGathering.Calc.Core.Actions
 
         public override int GP => 100;
 
+        public override int ExecutionOrder => 1;
+
         public override void Execute(GatheringContext context)
         {
             context.Boon = Math.Min(context.Boon + 0.3, 1);

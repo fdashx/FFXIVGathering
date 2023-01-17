@@ -13,6 +13,8 @@ namespace FFXIVGathering.Calc.Core.Actions
 
         public override int Level => 4;
 
+        public override int ExecutionOrder => 1;
+
         public override void Execute(GatheringContext context)
         {
             context.Chance = Math.Min(context.Chance + 0.05, 1);

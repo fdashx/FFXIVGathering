@@ -13,6 +13,8 @@ namespace FFXIVGathering.Calc.Core.Actions
 
         public override int Level => 68;
 
+        public override int ExecutionOrder => 3;
+
         public override void Execute(GatheringContext context)
         {
             context.BountifulAttempts++;

@@ -216,7 +216,7 @@ namespace FFXIVGathering.Calc.UI.ViewModels
         {
             actions.Clear();
 
-            foreach (var action in rotation.Actions.GroupBy(a => a).OrderBy(a => a.Key.Level))
+            foreach (var action in rotation.Actions.GroupBy(a => a).OrderBy(a => a.Key.ExecutionOrder).ThenBy(a => a.Key.Level))
             {
                 var actionVm = new ActionVm(action.Key) { UsedTimes = action.Count(), IsMiner = IsMiner };
                 actions.Add(actionVm);

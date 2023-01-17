@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Accessibility;
+using Autofac;
 using Config.Net;
 using FFXIVGathering.Calc.Core;
 using FFXIVGathering.Calc.UI.ViewModels;
@@ -34,7 +35,40 @@ namespace FFXIVGathering.Calc.UI
             _mainVm = _lifetimeScope.Resolve<IMainVm>();
             _mainVm.LoadSettings(_lifetimeScope.Resolve<IMainSettings>());
             _mainWindow = new MainWindow() { DataContext = _mainVm};
+            _mainWindow.Loaded += _mainWindow_Loaded;
             _mainWindow.Show();
+        }
+
+        private void _mainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_mainWindow == null || _lifetimeScope == null)
+            {
+                return;
+            }
+
+            var settings = _lifetimeScope.Resolve<IMainSettings>();
+
+            if (!double.IsNaN(settings.WindowTop))
+            {
+                _mainWindow.Top = settings.WindowTop;
+            }
+
+            if (!double.IsNaN(settings.WindowLeft))
+            {
+                _mainWindow.Left = settings.WindowLeft;
+            }
+
+            if (!double.IsNaN(settings.WindowWidth))
+            {
+                _mainWindow.Width = settings.WindowWidth;
+            }
+
+            if (!double.IsNaN(settings.WindowHeight))
+            {
+                _mainWindow.Height = settings.WindowHeight;
+            }
+
+            _mainWindow.WindowState = settings.IsWindowMaximised ? WindowState.Maximized : WindowState.Normal;
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -43,7 +77,18 @@ namespace FFXIVGathering.Calc.UI
 
             if (_lifetimeScope != null)
             {
-                _mainVm?.SaveSettings(_lifetimeScope.Resolve<IMainSettings>());
+                var settings = _lifetimeScope.Resolve<IMainSettings>();
+                _mainVm?.SaveSettings(settings);
+
+                if (_mainWindow != null)
+                {
+                    settings.WindowTop = _mainWindow.Top;
+                    settings.WindowLeft = _mainWindow.Left;
+                    settings.WindowHeight = _mainWindow.Height;
+                    settings.WindowWidth = _mainWindow.Width;
+                    settings.IsWindowMaximised = _mainWindow.WindowState == WindowState.Maximized;
+                }
+
                 _lifetimeScope.Dispose();
             }
             
